@@ -114,8 +114,8 @@ tf.reset_default_graph()
 tf.set_random_seed(51)
 
 #Defining Placeholders
-input_data = tf.placeholder(tf.int32, [None, MAX_LEN])
-y_true = tf.placeholder(tf.float32, [None, numClasses])
+input_data = tf.placeholder(tf.int32, [batchSize, MAX_LEN])
+y_true = tf.placeholder(tf.float32, [batchSize, numClasses])
 
 hold_prob1 = tf.placeholder(tf.float32)
 
