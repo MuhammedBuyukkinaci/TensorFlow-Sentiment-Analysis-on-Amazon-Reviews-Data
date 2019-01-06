@@ -8,6 +8,14 @@ Implementing different RNN([GRU](https://arxiv.org/pdf/1412.3555.pdf) & [LSTM](h
 pip3 install requirements.txt
 ```
 
+# Pre-trained Word Embeddings
+
+I used 100-Dimensional [GloVe Word Embeddings](https://nlp.stanford.edu/projects/glove/) for this project.
+
+You can download it from [here](https://www.kaggle.com/terenceliu4444/glove6b100dtxt#glove.6B.100d.txt).
+
+After downloading, _glove.6B.100d.txt_ must be in where .py files are.
+
 # Default Version
 
 If you have GPU, use ``` 02_CUDNN_GRU.py ``` or ``` 06_CUDNN_LSTM.py ``` as default .
@@ -64,14 +72,6 @@ After cloning the repository
 ``` 07_CUDNN_LSTM_bidirectional.py ``` --> GPU optimized CUDNNLSTM bidirectional implementation.
 
 ``` 08_CPU_Optimized_LSTM.py ``` --> CPU optimized LSTM optimization.
-
-# Pre-trained Word Embeddings
-
-I used 100-Dimensional [GloVe Word Embeddings](https://nlp.stanford.edu/projects/glove/) for this project.
-
-You can download it from [here](https://www.kaggle.com/terenceliu4444/glove6b100dtxt#glove.6B.100d.txt).
-
-After downloading, _glove.6B.100d.txt_ must be in where .py files are.
 
 # Early Stopping
 
