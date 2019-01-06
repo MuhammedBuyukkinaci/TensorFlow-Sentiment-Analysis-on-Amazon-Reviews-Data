@@ -1,6 +1,6 @@
 # TensorFlow-Sentiment-Analysis-on-Amazon-Reviews-Data
 
-Implementing different RNN models on a subset of Amazon Reviews data.
+Implementing different RNN([GRU](https://arxiv.org/pdf/1412.3555.pdf)) models on a subset of Amazon Reviews data.
 
 # Requirements
 
@@ -9,23 +9,17 @@ pip3 install requirements.txt
 ```
 
 # Training
-If you have GPU, run one of 4 commands below
+If you have GPU, use ``` 02_CUDNN_GRU.py ``` as default .
 
-```
-python3 01_Baseline_GPU.py 
-```
+If you don't have, use ``` 04_CPU_Optimized_GRU.py ``` as default.
 
-```
-python3 02_CUDNN_GRU.py 
-```
+``` python3 01_Baseline_GPU.py ```
 
-```
-python3 03_CUDNN_GRU_bidirectional.py 
-```
+``` python3 02_CUDNN_GRU.py ```
 
-```
-python3 04_CPU_Optimized_GRU.py 
-```
+``` python3 03_CUDNN_GRU_bidirectional.py ```
+
+``` python3 04_CPU_Optimized_GRU.py ```
 
 # Dataset
 
@@ -39,6 +33,8 @@ Output Classes are positive and negative (Binary Classification).
 
 The models were trained on train dataset and validated on test dataset.
 
+After cloning the repository
+
 # Models
 
 ``` 01_Baseline_GPU.py ``` --> Base GRU implementation.
@@ -48,10 +44,6 @@ The models were trained on train dataset and validated on test dataset.
 ``` 03_CUDNN_GRU_bidirectional.py ``` --> GPU optimized CUDNNGRU bidirectional implementation.
 
 ``` 04_CPU_Optimized_GRU.py ``` --> CPU optimized GRU optimization.
-
-If you have GPU, use ``` 02_CUDNN_GRU.py ``` .
-
-If you don't have, use ``` 04_CPU_Optimized_GRU.py ``` .
 
 # Pre-trained Word Embeddings
 
@@ -65,7 +57,7 @@ After downloading, _glove.6B.100d.txt_ must be in where .py files are.
 
 I defined a customized function to check loss is decreasing on test data.
 
-If it isn't decreasing, the model stops to train.
+If it isn't decreasing for a time period, the model stops to train.
 
 ``` Python
 #Defining a function for early stopping

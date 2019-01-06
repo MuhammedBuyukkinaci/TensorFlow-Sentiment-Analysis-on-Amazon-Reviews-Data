@@ -31,8 +31,8 @@ epsilon = 1e-4# For batch normalization
 val_loop_iter = 50 # in how many iters we record
 
 #Reading csv's
-train = pd.read_csv('train_amazon.csv')
-test = pd.read_csv('test_amazon.csv')
+train = pd.read_csv('dataset/train_amazon.csv')
+test = pd.read_csv('dataset/test_amazon.csv')
 
 #Removing punctuations
 #Converting to Lowercase and cleaning punctiations
