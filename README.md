@@ -3,7 +3,7 @@ Implementing different RNN models on a subset of Amazon Reviews data.
 
 # Dataset
 
-Dataset used in this project is a subset of [Amazon Reviews](https://www.kaggle.com/bittlingmayer/amazonreviews#train.ft.txt.bz2)
+Dataset used in this project is a subset of [Amazon Reviews](https://www.kaggle.com/bittlingmayer/amazonreviews#train.ft.txt.bz2).
 
 Train dataset has 150k rows.
 
