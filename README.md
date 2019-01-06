@@ -49,7 +49,7 @@ Train dataset has 150k rows.
 
 Test dataset has 30k rows.
 
-Output Classes are positive and negative (Binary Classification).
+Output classes are positive and negative (Binary Classification).
 
 The models were trained on train dataset and validated on test dataset.
 
@@ -75,7 +75,7 @@ After cloning the repository
 
 # Early Stopping
 
-I defined a customized function to check loss is decreasing on test data.
+I defined a customized function to check if loss is decreasing on test data.
 
 If it isn't decreasing for a time period, the model stops to train.
 
