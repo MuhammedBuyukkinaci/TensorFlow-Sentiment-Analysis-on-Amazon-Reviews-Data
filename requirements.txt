@@ -1,0 +1,5 @@
+pip3 install tensorflow==1.8.0
+pip3 install pandas==0.23.4
+pip3 install numpy==1.15.4
+pip3 install keras==2.2.4
+pip3 install tqdm==4.28.1

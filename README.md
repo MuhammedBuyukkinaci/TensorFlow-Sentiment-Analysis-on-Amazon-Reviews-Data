@@ -1,5 +1,12 @@
 # TensorFlow-Sentiment-Analysis-on-Amazon-Reviews-Data
+
 Implementing different RNN models on a subset of Amazon Reviews data.
+
+# Requirements
+
+```
+pip3 install requirements.txt
+```
 
 # Dataset
 
@@ -21,4 +28,7 @@ You can download it from [here](https://www.kaggle.com/terenceliu4444/glove6b100
 
 After downloading, _glove.6B.100d.txt_ must be in where .py files are.
 
+# Results
+
+![results](https://github.com/MuhammedBuyukkinaci/TensorFlow-Sentiment-Analysis-on-Amazon-Reviews-Data/blob/master/results.png)
 
