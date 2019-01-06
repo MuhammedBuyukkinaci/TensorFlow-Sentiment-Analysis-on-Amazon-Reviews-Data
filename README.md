@@ -74,7 +74,6 @@ def early_stopping_check(x):
         return True
     else:
         return False
-end
 ```
 
 # Results
