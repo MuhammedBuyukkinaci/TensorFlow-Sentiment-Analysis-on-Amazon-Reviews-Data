@@ -1,6 +1,6 @@
 # TensorFlow-Sentiment-Analysis-on-Amazon-Reviews-Data
 
-Implementing different RNN([GRU](https://arxiv.org/pdf/1412.3555.pdf)) models on a subset of Amazon Reviews data.
+Implementing different RNN([GRU](https://arxiv.org/pdf/1412.3555.pdf) & [LSTM](https://www.bioinf.jku.at/publications/older/2604.pdf)) models on a subset of Amazon Reviews data.
 
 # Requirements
 
@@ -23,6 +23,15 @@ If you don't have, use ``` 04_CPU_Optimized_GRU.py ``` or ``` 08_CPU_Optimized_L
 ``` python3 03_CUDNN_GRU_bidirectional.py ```
 
 ``` python3 04_CPU_Optimized_GRU.py ```
+
+``` python3 05_Baseline_LSTM.py ```
+
+``` python3 06_CUDNN_LSTM.py ```
+
+``` python3 07_CUDNN_LSTM_bidirectional.py ```
+
+``` python3 08_CPU_Optimized_LSTM.py ```
+
 
 # Dataset
 
