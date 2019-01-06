@@ -18,3 +18,7 @@ The models were trained on train dataset and validated on test dataset.
 I used 100-Dimensional [GloVe Word Embeddings](https://nlp.stanford.edu/projects/glove/) for this project.
 
 You can download it from [here](https://www.kaggle.com/terenceliu4444/glove6b100dtxt#glove.6B.100d.txt).
+
+After downloading, _glove.6B.100d.txt_ must be in where .py files are.
+
+
