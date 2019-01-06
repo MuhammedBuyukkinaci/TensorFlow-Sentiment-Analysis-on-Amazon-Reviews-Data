@@ -113,8 +113,8 @@ tf.reset_default_graph()
 tf.set_random_seed(51)
 
 #Defining Placeholders
-input_data = tf.placeholder(tf.int32, [None, MAX_LEN])
-y_true = tf.placeholder(tf.float32, [None, numClasses])
+input_data = tf.placeholder(tf.int32, [batchSize, MAX_LEN])
+y_true = tf.placeholder(tf.float32, [batchSize, numClasses])
 
 hold_prob1 = tf.placeholder(tf.float32)
 
@@ -124,7 +124,7 @@ data = tf.nn.embedding_lookup(embedding_matrix,input_data)
 
 #Defining GRU Layer
 GRUCell = tf.contrib.rnn.GRUCell(num_units=GRU_UNITS,bias_initializer=tf.constant_initializer(0.1),
-                                 kernel_initializer=tf.keras.initializers.glorot_normal())
+                                 kernel_initializer=tf.contrib.layers.xavier_initializer())
 #Adding dropout
 GRUCell = tf.contrib.rnn.DropoutWrapper(cell=GRUCell, output_keep_prob=0.75)
 #Defining zero_state

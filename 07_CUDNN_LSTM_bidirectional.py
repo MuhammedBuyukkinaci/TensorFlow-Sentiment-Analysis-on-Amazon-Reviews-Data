@@ -1,5 +1,5 @@
 """
-Created on Sun Jan  6 12:12:28 2019
+Created on Sun Jan  6 12:11:28 2019
 
 @author: Muhammed Buyukkinaci
 """
@@ -18,19 +18,12 @@ from datetime import datetime
 #Always seed the randomness of this universe.
 np.random.seed(51)
 
-if tf.test.gpu_device_name():
-    print("GPU isn't gonna be used even if you have")
-    os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
-else:
-    print("No GPU Found")
-    print("CPU is gonna be used")
-
 #Define HyperParameters
 MAX_WORD_TO_USE = 100000 # how many words to use in training
 MAX_LEN = 80 # number of time-steps.
 EMBED_SIZE = 100 #GLoVe 100-D
 batchSize = 128 # how many samples to feed neural network
-GRU_UNITS = 256 # Number of nodes in GRU Layer
+LSTM_UNITS = 256 # Number of nodes in LSTM Layer
 numClasses = 2 #{Positive,Negative}
 iterations = 100000 # How many iterations to train
 nodes_on_FC = 64 # Number of nodes on FC layer
@@ -92,6 +85,7 @@ embeddings_index = dict(get_coefs(*o.split(" ")) for o in open(os.path.join(work
 
 print("There are {} words in our Word Embeddings file".format(len(embeddings_index)))
 
+
 all_embs = np.stack(embeddings_index.values())
 #Calculating mean and std to fill embedding matrix
 emb_mean,emb_std = all_embs.mean(), all_embs.std()
@@ -125,28 +119,43 @@ y_true = tf.placeholder(tf.float32, [batchSize, numClasses])
 
 hold_prob1 = tf.placeholder(tf.float32)
 
+
 #Creating our Embedding matrix
 data = tf.nn.embedding_lookup(embedding_matrix,input_data)
 
-#Defining GRU Layer
-GRUCell = tf.contrib.rnn.GRUBlockCellV2(num_units=GRU_UNITS)
-#Adding dropout
-GRUCell = tf.contrib.rnn.DropoutWrapper(cell=GRUCell, output_keep_prob=0.75)
-#Defining zero_state
-initial_state = GRUCell.zero_state(batchSize, dtype=tf.float32)
-#Unrolling the RNN, value is a tensor having a shape of [batchSize, MAX_LEN, GRU_Units]
-value, _ = tf.nn.dynamic_rnn(cell = GRUCell,inputs= data,initial_state=initial_state, dtype=tf.float32)
+print(data.get_shape().as_list())
+
+data = tf.transpose(data, [1, 0, 2])
+
+print(data.get_shape().as_list())
+
+#Defining Bidirectional CudnnLSTM Layer
+LSTM_CELL = tf.contrib.cudnn_rnn.CudnnLSTM(num_layers=1,num_units=LSTM_UNITS,
+                               bias_initializer = tf.constant_initializer(0.1),
+                              kernel_initializer=tf.contrib.layers.xavier_initializer(),
+                              direction='bidirectional')
+
+"""
+#For stacked (more than 1 layer) CudnnLSTM architecture
+
+LSTM_CELL = tf.contrib.cudnn_rnn.CudnnLSTM(num_layers=2,num_units=LSTM_UNITS,
+                               bias_initializer = tf.constant_initializer(0.1),
+                              kernel_initializer=tf.contrib.layers.xavier_initializer(),dropout=0.2,
+                              direction='bidirectional')
+"""
+
+value, _ = LSTM_CELL(inputs= data)
 
 print("Shape of value = ",value.get_shape().as_list())
 
-#After transposing, value  having a shape of [ MAX_LEN, batchSize, GRU_Units]
-value = tf.transpose(value, [1, 0, 2])
 #tf.gather outputed last row of 'value' whose index = MAX_LEN-1;
 #which is equal int(value.get_shape()[0]) - 1.
 last = tf.gather(value, int(value.get_shape()[0]) - 1)
 
+print(last.get_shape().as_list())
+
 #Defining weights and biases for 1 st Fully Connected part of NN
-weight_fc1 = tf.Variable(tf.truncated_normal([GRU_UNITS, nodes_on_FC]))
+weight_fc1 = tf.Variable(tf.truncated_normal([LSTM_UNITS*2, nodes_on_FC]))
 bias_fc1 = tf.Variable(tf.constant(0.1, shape=[nodes_on_FC]))
 
 #Defining 1st FC layer
@@ -253,7 +262,7 @@ with tf.Session(config=config) as sess:
                 
                 #If validation loss didn't decrease for val_loop_iter * 20 iters, stop.
                 if early_stopping_check(val_scores_loss) == False:
-                    saver.save(sess, os.path.join(os.getcwd(),"1_layered_GRU.ckpt"),global_step=i)
+                    saver.save(sess, os.path.join(os.getcwd(),"1_layered_LSTM.ckpt"),global_step=i)
                     break
                 
     print("Training has finished")

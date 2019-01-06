@@ -30,7 +30,7 @@ MAX_WORD_TO_USE = 100000 # how many words to use in training
 MAX_LEN = 80 # number of time-steps.
 EMBED_SIZE = 100 #GLoVe 100-D
 batchSize = 128 # how many samples to feed neural network
-GRU_UNITS = 256 # Number of nodes in GRU Layer
+LSTM_UNITS = 256 # Number of nodes in LSTM Layer
 numClasses = 2 #{Positive,Negative}
 iterations = 100000 # How many iterations to train
 nodes_on_FC = 64 # Number of nodes on FC layer
@@ -128,25 +128,25 @@ hold_prob1 = tf.placeholder(tf.float32)
 #Creating our Embedding matrix
 data = tf.nn.embedding_lookup(embedding_matrix,input_data)
 
-#Defining GRU Layer
-GRUCell = tf.contrib.rnn.GRUBlockCellV2(num_units=GRU_UNITS)
+#Defining LSTM Layer
+LSTMCell = tf.contrib.rnn.LSTMBlockCell(num_units=LSTM_UNITS)
 #Adding dropout
-GRUCell = tf.contrib.rnn.DropoutWrapper(cell=GRUCell, output_keep_prob=0.75)
+LSTMCell = tf.contrib.rnn.DropoutWrapper(cell=LSTMCell, output_keep_prob=0.75)
 #Defining zero_state
-initial_state = GRUCell.zero_state(batchSize, dtype=tf.float32)
-#Unrolling the RNN, value is a tensor having a shape of [batchSize, MAX_LEN, GRU_Units]
-value, _ = tf.nn.dynamic_rnn(cell = GRUCell,inputs= data,initial_state=initial_state, dtype=tf.float32)
+initial_state = LSTMCell.zero_state(batchSize, dtype=tf.float32)
+#Unrolling the RNN, value is a tensor having a shape of [batchSize, MAX_LEN, LSTM_UNITS]
+value, _ = tf.nn.dynamic_rnn(cell = LSTMCell,inputs= data,initial_state=initial_state, dtype=tf.float32)
 
 print("Shape of value = ",value.get_shape().as_list())
 
-#After transposing, value  having a shape of [ MAX_LEN, batchSize, GRU_Units]
+#After transposing, value  having a shape of [ MAX_LEN, batchSize, LSTM_UNITS]
 value = tf.transpose(value, [1, 0, 2])
 #tf.gather outputed last row of 'value' whose index = MAX_LEN-1;
 #which is equal int(value.get_shape()[0]) - 1.
 last = tf.gather(value, int(value.get_shape()[0]) - 1)
 
 #Defining weights and biases for 1 st Fully Connected part of NN
-weight_fc1 = tf.Variable(tf.truncated_normal([GRU_UNITS, nodes_on_FC]))
+weight_fc1 = tf.Variable(tf.truncated_normal([LSTM_UNITS, nodes_on_FC]))
 bias_fc1 = tf.Variable(tf.constant(0.1, shape=[nodes_on_FC]))
 
 #Defining 1st FC layer
@@ -253,7 +253,7 @@ with tf.Session(config=config) as sess:
                 
                 #If validation loss didn't decrease for val_loop_iter * 20 iters, stop.
                 if early_stopping_check(val_scores_loss) == False:
-                    saver.save(sess, os.path.join(os.getcwd(),"1_layered_GRU.ckpt"),global_step=i)
+                    saver.save(sess, os.path.join(os.getcwd(),"1_layered_LSTM.ckpt"),global_step=i)
                     break
                 
     print("Training has finished")

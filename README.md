@@ -8,10 +8,13 @@ Implementing different RNN([GRU](https://arxiv.org/pdf/1412.3555.pdf)) models on
 pip3 install requirements.txt
 ```
 
-# Training
-If you have GPU, use ``` 02_CUDNN_GRU.py ``` as default .
+# Default Version
 
-If you don't have, use ``` 04_CPU_Optimized_GRU.py ``` as default.
+If you have GPU, use ``` 02_CUDNN_GRU.py ``` or ``` 06_CUDNN_LSTM.py ``` as default .
+
+If you don't have, use ``` 04_CPU_Optimized_GRU.py ``` or ``` 08_CPU_Optimized_LSTM.py ``` as default.
+
+# Training
 
 ``` python3 01_Baseline_GPU.py ```
 
@@ -37,13 +40,21 @@ After cloning the repository
 
 # Models
 
-``` 01_Baseline_GPU.py ``` --> Base GRU implementation.
+``` 01_Baseline_GRU.py ``` --> Base GRU implementation.
 
 ``` 02_CUDNN_GRU.py ``` --> GPU optimized CUDNNGRU implementation.
 
 ``` 03_CUDNN_GRU_bidirectional.py ``` --> GPU optimized CUDNNGRU bidirectional implementation.
 
 ``` 04_CPU_Optimized_GRU.py ``` --> CPU optimized GRU optimization.
+
+``` 05_Baseline_LSTM.py ``` --> Base LSTM implementation.
+
+``` 06_CUDNN_LSTM.py ``` --> GPU optimized CUDNNLSTM implementation.
+
+``` 07_CUDNN_LSTM_bidirectional.py ``` --> GPU optimized CUDNNLSTM bidirectional implementation.
+
+``` 08_CPU_Optimized_LSTM.py ``` --> CPU optimized LSTM optimization.
 
 # Pre-trained Word Embeddings
 
