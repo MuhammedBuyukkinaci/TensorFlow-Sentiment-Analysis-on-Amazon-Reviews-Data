@@ -40,6 +40,10 @@ If you don't have, use ``` 04_CPU_Optimized_GRU.py ``` or ``` 08_CPU_Optimized_L
 
 ``` python3 08_CPU_Optimized_LSTM.py ```
 
+``` python3 09_CONV1D_CUDNNGRU.py ```
+
+``` python3 10_CONV2D.py ```
+
 
 # Dataset
 
@@ -63,7 +67,7 @@ After cloning the repository
 
 ``` 03_CUDNN_GRU_bidirectional.py ``` --> GPU optimized CUDNNGRU bidirectional implementation.
 
-``` 04_CPU_Optimized_GRU.py ``` --> CPU optimized GRU optimization.
+``` 04_CPU_Optimized_GRU.py ``` --> CPU optimized GRU implementation.
 
 ``` 05_Baseline_LSTM.py ``` --> Base LSTM implementation.
 
@@ -71,7 +75,12 @@ After cloning the repository
 
 ``` 07_CUDNN_LSTM_bidirectional.py ``` --> GPU optimized CUDNNLSTM bidirectional implementation.
 
-``` 08_CPU_Optimized_LSTM.py ``` --> CPU optimized LSTM optimization.
+``` 08_CPU_Optimized_LSTM.py ``` --> CPU optimized LSTM implementation.
+
+``` 09_CONV1D_CUDNNGRU.py ``` --> CONV1D BEFORE CUDNNGRU implementation
+
+``` 10_CONV2D.py ``` ---> CONV2D implementation before fully connected layers. 
+
 
 # Early Stopping
 
