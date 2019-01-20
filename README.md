@@ -87,11 +87,11 @@ After cloning the repository
 
 ``` 10_CONV2D.py ``` ---> CONV2D implementation before fully connected layers. 
 
-``` python3 11_Attention_GRU.py ``` ---> Attention Layer including GRU implementation
+``` 11_Attention_GRU.py ``` ---> Attention Layer including GRU implementation
 
-``` python3 12_Attention_CUDNNGRU.py ``` ---> Attention Layer including CUDNNGRU implementation
+``` 12_Attention_CUDNNGRU.py ``` ---> Attention Layer including CUDNNGRU implementation
 
-``` python3 13_Attention_CUDNNGRU_bidirectional.py ``` --->  Attention Layer including Bidirectional CUDNNGRU implementation
+``` 13_Attention_CUDNNGRU_bidirectional.py ``` --->  Attention Layer including Bidirectional CUDNNGRU implementation
 
 
 # Early Stopping
