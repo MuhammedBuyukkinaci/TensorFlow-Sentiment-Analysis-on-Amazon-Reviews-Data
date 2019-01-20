@@ -44,6 +44,12 @@ If you don't have, use ``` 04_CPU_Optimized_GRU.py ``` or ``` 08_CPU_Optimized_L
 
 ``` python3 10_CONV2D.py ```
 
+``` python3 11_Attention_GRU.py ```
+
+``` python3 12_Attention_CUDNNGRU.py ```
+
+``` python3 13_Attention_CUDNNGRU_bidirectional.py ```
+
 
 # Dataset
 
@@ -80,6 +86,12 @@ After cloning the repository
 ``` 09_CONV1D_CUDNNGRU.py ``` --> CONV1D BEFORE CUDNNGRU implementation
 
 ``` 10_CONV2D.py ``` ---> CONV2D implementation before fully connected layers. 
+
+``` python3 11_Attention_GRU.py ``` ---> Attention Layer including GRU implementation
+
+``` python3 12_Attention_CUDNNGRU.py ``` ---> Attention Layer including CUDNNGRU implementation
+
+``` python3 13_Attention_CUDNNGRU_bidirectional.py ``` --->  Attention Layer including Bidirectional CUDNNGRU implementation
 
 
 # Early Stopping
