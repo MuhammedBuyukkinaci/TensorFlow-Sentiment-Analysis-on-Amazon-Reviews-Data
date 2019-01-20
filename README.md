@@ -63,8 +63,6 @@ Output classes are positive and negative (Binary Classification).
 
 The models were trained on train dataset and validated on test dataset.
 
-After cloning the repository
-
 # Models
 
 ``` 01_Baseline_GRU.py ``` --> Base GRU implementation.
