@@ -5,7 +5,7 @@ Implementing different RNN([GRU](https://arxiv.org/pdf/1412.3555.pdf) & [LSTM](h
 # Requirements
 
 ```
-pip3 install requirements.txt
+pip3 install -r requirements.txt
 ```
 
 # Pre-trained Word Embeddings
